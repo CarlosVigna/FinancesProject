@@ -6,7 +6,7 @@ public class TipoDeRecebimento {
 
   private int id;
   private String nome;
-  private Credor credor = new Credor();
+
 
   Scanner teclado = new Scanner(System.in);
 
@@ -16,7 +16,7 @@ public class TipoDeRecebimento {
   public TipoDeRecebimento(int id, String nome, Credor credor) {
     this.id = id;
     this.nome = nome;
-    this.credor = credor;
+
   }
 
   public TipoDeRecebimento(int id, String nome) {
@@ -40,17 +40,8 @@ public class TipoDeRecebimento {
     this.nome = nome;
   }
 
-  public Credor getCredor() {
-    return credor;
-  }
-
-  public void setCredor(Credor credor) {
-    this.credor = credor;
-  }
-
   public void cadastrar()
   {
-    credor.cadastrar();
     System.out.println("Informe o ID do tipo de Receita: ");
     id = teclado.nextInt();
     System.out.println("Qual é o tipo de Receita: ");
@@ -63,8 +54,4 @@ public class TipoDeRecebimento {
     return "Tipo de Recebimento: " + getNome();
   }
 
-  public void imprimir()
-  {
   }
-
-}

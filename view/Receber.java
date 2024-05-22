@@ -97,10 +97,33 @@ public class Receber {
 
   }
 
+  public void cadastrar(Credor credor, TipoDeRecebimento tipoDeRecebimento) {
+    this.credor = credor;
+    this.tipoDeRecebimento = tipoDeRecebimento;
+
+    teclado.nextLine();
+    System.out.println("Informe o ID do título a Receber: ");
+    id = teclado.nextInt();
+    teclado.nextLine();
+    System.out.println("Informe o Histórico: ");
+    historico = teclado.nextLine();
+    System.out.println("Informe o Valor: ");
+    valor = teclado.nextDouble();
+    teclado.nextLine();
+    System.out.println("Informe a Data de Vencimento (yyyy-MM-dd): ");
+    dtVenc = java.sql.Date.valueOf(teclado.nextLine());
+    System.out.println("Informe a Situação: ");
+    situacao = teclado.nextLine();
+    System.out.println("Informe o Valor Liquidado: ");
+    liquidado = teclado.nextDouble();
+    teclado.nextLine();
+  }
+
   public String toString()
   {
-    return "ID :" + getId() + "Nome do Credor: " + getTipoDeReceita().getCredor().getNome() + "Telefone do Credor: " + getTipoDeReceita().getCredor().getTelefone()
-    + "Tipo de Receita: " + tipoDeRecebimento.getNome();
+    return  "Nome do Credor: " + credor.getNome() + " Telefone do Credor: " + credor.getTelefone() + " Tipo de Receita: "
+            + tipoDeRecebimento.getNome() + " Tipo de Receita: " + tipoDeRecebimento.getNome() + "Valor: " + getValor() + "Data de vencimento: " + getDtVenc() + "Situação: " + getSituacao()
+            + "Valor liquidado: " + getLiquidado();
   }
 
 

@@ -41,8 +41,9 @@ public class Controlador {
 
             escolha = teclado.nextInt();
             teclado.nextLine();
-
+            Credor ultimoCredor = new Credor();
             Credor credor = new Credor(0, null, null);
+            TipoDeRecebimento ultimoTipoDeRecebimento = new TipoDeRecebimento();
             TipoDeRecebimento tipoRecebimento = new TipoDeRecebimento(0,null);
 
             switch (escolha) {
@@ -53,6 +54,7 @@ public class Controlador {
 
                     credor.cadastrar();
                     ListaDeCredores.add(credor);
+
 
                     System.out.println("Credor Cadastrado com sucesso! ");
 
@@ -80,6 +82,7 @@ public class Controlador {
                     teclado.nextLine();
                     int escolhaCadastrarCredor = 0;
 
+
                     // isEmpty é pra ver se tá vazio viu
                     if (escolhaReceber == 1) {
                         if (ListaDeCredores.isEmpty()) {
@@ -90,6 +93,7 @@ public class Controlador {
                                     credor = new Credor();
                                     credor.cadastrar();
                                     ListaDeCredores.add(credor);
+                                    ultimoCredor = ListaDeCredores.getLast();
                                 }else {
                                     if (escolhaCadastrarCredor == 2) {
                                         continue;
@@ -104,16 +108,26 @@ public class Controlador {
                                 System.out.println(i + " - " + x);
                                 i++;
                             }
+                            boolean escolhaValida = false;
 
+
+                            do {
+                                int credorEscolhido = 0;
                             System.out.print("Digite o número do credor: ");
-                            int credorEscolhido = teclado.nextInt();
+                            credorEscolhido = teclado.nextInt();
                             teclado.nextLine();
-                            if (credorEscolhido > 0 && credorEscolhido <= ListaDeCredores.size()) {
-                                Credor credorSelecionado = ListaDeCredores.get(credorEscolhido - 1);
-                                System.out.println("Credor selecionado: " + credorSelecionado);
-                            } else {
-                                System.out.println("Opção inválida.");
-                            }
+
+                                   if (credorEscolhido > 0 && credorEscolhido <= ListaDeCredores.size()) {
+                                       Credor credorSelecionado = ListaDeCredores.get(credorEscolhido - 1);
+                                       System.out.println("Credor selecionado: " + credorSelecionado);
+                                       ultimoCredor = credorSelecionado;
+                                       escolhaValida = true;
+
+                                   } else {
+                                       System.out.println("Opção inválida.");
+                                   }
+
+                               }while (!escolhaValida);
                         }
                     } else if (escolhaReceber == 2) {
 
@@ -121,11 +135,12 @@ public class Controlador {
                         credor.cadastrar();
                         ListaDeCredores.add(credor);
                         System.out.println("Novo credor cadastrado com sucesso!");
+                        ultimoCredor = ListaDeCredores.getLast();
+
                     } else {
                         System.out.println("Opção inválida.");
-                    }
 
-                    //DAQUI PRA BAIXO TESTE
+                    }
 
                     int escolhaTipoTituloReceber; // variável pra essa situação de escolher um tipo ja cadastrado ou cadastrar um novo.
 
@@ -147,6 +162,7 @@ public class Controlador {
                                 tipoRecebimento = new TipoDeRecebimento();
                                 tipoRecebimento.cadastrar();
                                 ListaDeTipoDeRecebimento.add(tipoRecebimento);
+                                ultimoTipoDeRecebimento = ListaDeTipoDeRecebimento.getLast();
                             }else {
                                 if (escolhaCadastrarTipoRecebimento == 2) {
                                     continue;
@@ -154,7 +170,7 @@ public class Controlador {
                             }
 
                         } else {
-                                //Collections.sort(ListaDeTipoDeRecebimento, comparing(tipoRecebimento:;
+                            //Collections.sort(ListaDeCredores, comparing(Credor::getNome));
                             System.out.println("Escolha o Tipo Recebimento:");
                             int i = 1;
                             for (TipoDeRecebimento y : ListaDeTipoDeRecebimento) {
@@ -168,8 +184,10 @@ public class Controlador {
                             if (tipoRecebimentoEscolhido > 0 && tipoRecebimentoEscolhido <= ListaDeCredores.size()) {
                                 TipoDeRecebimento tipoRecebimentoSelecionado = ListaDeTipoDeRecebimento.get(tipoRecebimentoEscolhido - 1);
                                 System.out.println("Tipo de Recebimento selecionado: " + tipoRecebimentoSelecionado);
+                                ultimoTipoDeRecebimento = ListaDeTipoDeRecebimento.get(tipoRecebimentoEscolhido - 1);
                             } else {
                                 System.out.println("Opção inválida.");
+
                             }
                         }
                     } else if (escolhaReceber == 2) {
@@ -177,14 +195,17 @@ public class Controlador {
                         tipoRecebimento = new TipoDeRecebimento();
                         tipoRecebimento.cadastrar();
                         ListaDeTipoDeRecebimento.add(tipoRecebimento);
+                        ultimoTipoDeRecebimento = ListaDeTipoDeRecebimento.getLast();
                         System.out.println("Novo tipo de Recebimento cadastrado com sucesso!");
                     } else {
                         System.out.println("Opção inválida.");
                     }
 
-                    tituloReceber.cadastrar();
+                    //teste
+                    tituloReceber.cadastrar(ultimoCredor, ultimoTipoDeRecebimento);
                     listaDeTitulosReceber.add(tituloReceber);
                     System.out.println("Título à Receber cadastrado com sucesso!");
+                    System.out.println(tituloReceber);
                     break;
 
                 case SAIR:
