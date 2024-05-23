@@ -11,8 +11,8 @@ public class Receber {
   private double valor;
   private double liquidado;
   private String situacao;
-  Credor credor = new Credor();
-  TipoDeRecebimento tipoDeRecebimento = new TipoDeRecebimento();
+  Credor credor;
+  TipoDeRecebimento tipoDeRecebimento;
 
   Scanner teclado = new Scanner(System.in);
 

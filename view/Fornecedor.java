@@ -1,82 +1,63 @@
 package view;
 
-/**
- * Class Fornecedor
- */
-public class Fornecedor {
+import java.util.Scanner;
 
-  //
-  // Fields
-  //
+public class Fornecedor {
 
   private int id;
   private String telefone;
   private String nome;
-  
-  //
-  // Constructors
-  //
-  public Fornecedor () { };
-  
-  //
-  // Methods
-  //
 
+  Scanner teclado = new Scanner(System.in);
 
-  //
-  // Accessor methods
-  //
+  public Fornecedor() { };
 
-  /**
-   * Set the value of id
-   * @param newVar the new value of id
-   */
-  public void setId (int newVar) {
-    id = newVar;
+  public Fornecedor(int id, String nome, String telefone) {
+    this.id = id;
+    this.nome = nome;
+    this.telefone = telefone;
   }
 
-  /**
-   * Get the value of id
-   * @return the value of id
-   */
-  public int getId () {
+  public int getId() {
     return id;
   }
 
-  /**
-   * Set the value of telefone
-   * @param newVar the new value of telefone
-   */
-  public void setTelefone (String newVar) {
-    telefone = newVar;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  /**
-   * Get the value of telefone
-   * @return the value of telefone
-   */
-  public String getTelefone () {
-    return telefone;
-  }
-
-  /**
-   * Set the value of nome
-   * @param newVar the new value of nome
-   */
-  public void setNome (String newVar) {
-    nome = newVar;
-  }
-
-  /**
-   * Get the value of nome
-   * @return the value of nome
-   */
-  public String getNome () {
+  public String getNome() {
     return nome;
   }
 
-  //
-  // Other methods
-  //
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-}
+  public String getTelefone() {
+    return telefone;
+  }
+
+  public void setTelefone(String telefone) {
+    this.telefone = telefone;
+  }
+
+  public void cadastrar()
+  {
+    System.out.println("Informe o ID: ");
+    id = teclado.nextInt();
+    teclado.nextLine();
+    System.out.println("Informe o nome do Fornecedor: ");
+    nome = teclado.nextLine();
+    System.out.println("Informe o telefone do Fornecedor: ");
+    telefone = teclado.nextLine();
+
+  }
+
+  @Override
+  public String toString() {
+    return "Fornecedor: " + getNome();
+  }
+
+  }
+

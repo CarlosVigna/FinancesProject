@@ -2,14 +2,7 @@ package view;
 
 import java.util.Date;
 
-/**
- * Class Pagar
- */
-public class Pagar extends TipoDeDespesa{
-
-  //
-  // Fields
-  //
+public class Pagar extends TipoDeDespesa {
 
   private int id;
   private String situacao;
@@ -17,136 +10,111 @@ public class Pagar extends TipoDeDespesa{
   private String historico;
   private double valor;
   private double liquidado;
-  private TipoDeDespesa tipoDeDespesa;
-  
-  //
-  // Constructors
-  //
-  public Pagar () { };
-  
-  //
-  // Methods
-  //
+  Fornecedor fornecedor;
+  TipoDeDespesa tipoDeDespesa;
 
 
-  //
-  // Accessor methods
-  //
-
-  /**
-   * Set the value of id
-   * @param newVar the new value of id
-   */
-  public void setId (int newVar) {
-    id = newVar;
+  public Pagar(int id, String situacao, Date dtVenc, String historico, double valor, double liquidado, TipoDeDespesa tipoDeDespesa) {
+    this.id = id;
+    this.situacao = situacao;
+    this.dtVenc = dtVenc;
+    this.historico = historico;
+    this.valor = valor;
+    this.liquidado = liquidado;
+    this.tipoDeDespesa = tipoDeDespesa;
   }
 
-  /**
-   * Get the value of id
-   * @return the value of id
-   */
-  public int getId () {
+  public Pagar() {
+
+  }
+
+  public int getId() {
     return id;
   }
 
-  /**
-   * Set the value of situacao
-   * @param newVar the new value of situacao
-   */
-  public void setSituacao (String newVar) {
-    situacao = newVar;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  /**
-   * Get the value of situacao
-   * @return the value of situacao
-   */
-  public String getSituacao () {
-    return situacao;
-  }
-
-  /**
-   * Set the value of dtVenc
-   * @param newVar the new value of dtVenc
-   */
-  public void setDtVenc (Date newVar) {
-    dtVenc = newVar;
-  }
-
-  /**
-   * Get the value of dtVenc
-   * @return the value of dtVenc
-   */
-  public Date getDtVenc () {
+  public Date getDtVenc() {
     return dtVenc;
   }
 
-  /**
-   * Set the value of historico
-   * @param newVar the new value of historico
-   */
-  public void setHistorico (String newVar) {
-    historico = newVar;
+  public void setDtVenc(Date dtVenc) {
+    this.dtVenc = dtVenc;
   }
 
-  /**
-   * Get the value of historico
-   * @return the value of historico
-   */
-  public String getHistorico () {
+  public String getHistorico() {
     return historico;
   }
 
-  /**
-   * Set the value of valor
-   * @param newVar the new value of valor
-   */
-  public void setValor (double newVar) {
-    valor = newVar;
+  public void setHistorico(String historico) {
+    this.historico = historico;
   }
 
-  /**
-   * Get the value of valor
-   * @return the value of valor
-   */
-  public double getValor () {
+  public double getValor() {
     return valor;
   }
 
-  /**
-   * Set the value of liquidado
-   * @param newVar the new value of liquidado
-   */
-  public void setLiquidado (double newVar) {
-    liquidado = newVar;
+  public void setValor(double valor) {
+    this.valor = valor;
   }
 
-  /**
-   * Get the value of liquidado
-   * @return the value of liquidado
-   */
-  public double getLiquidado () {
+  public double getLiquidado() {
     return liquidado;
   }
 
-  /**
-   * Set the value of tipoDeDespesa
-   * @param newVar the new value of tipoDeDespesa
-   */
-  public void setTipoDeDespesa (TipoDeDespesa newVar) {
-    tipoDeDespesa = newVar;
+  public void setLiquidado(double liquidado) {
+    this.liquidado = liquidado;
   }
 
-  /**
-   * Get the value of tipoDeDespesa
-   * @return the value of tipoDeDespesa
-   */
-  public TipoDeDespesa getTipoDeDespesa () {
+  public String getSituacao() {
+    return situacao;
+  }
+
+  public void setSituacao(String situacao) {
+    this.situacao = situacao;
+  }
+
+  public TipoDeDespesa getTipoDeDespesa() {
     return tipoDeDespesa;
   }
 
-  //
-  // Other methods
-  //
+  public void setTipoDeDespesa(TipoDeDespesa tipoDeDespesa) {
+    this.tipoDeDespesa = tipoDeDespesa;
+  }
+
+
+  public void cadastrar(Fornecedor fornecedor, TipoDeDespesa tipoDeDespesa) {
+
+    this.fornecedor = fornecedor;
+    this.tipoDeDespesa = tipoDeDespesa;
+    teclado.nextLine();
+    System.out.println("Informe o ID do título à PAGAR: ");
+    id = teclado.nextInt();
+    teclado.nextLine();
+    System.out.println("Informe o Histórico: ");
+    historico = teclado.nextLine();
+    System.out.println("Informe o Valor: ");
+    valor = teclado.nextDouble();
+    teclado.nextLine();
+    System.out.println("Informe a Data de Vencimento (yyyy-MM-dd): ");
+    dtVenc = java.sql.Date.valueOf(teclado.nextLine());
+    System.out.println("Informe a Situação: ");
+    situacao = teclado.nextLine();
+    System.out.println("Informe o Valor Liquidado: ");
+    liquidado = teclado.nextDouble();
+    teclado.nextLine();
+  }
+
+  public String toString()
+  {
+    return  "Nome do Fornecedor: " + fornecedor.getNome() + " Telefone do Fornecedor: " + fornecedor.getTelefone() + " Tipo de Despesa: "
+            + tipoDeDespesa.getNome() +  "Valor do título à PAGAR: " + getValor() + "Data de vencimento: " + getDtVenc() + "Situação: " + getSituacao()
+            + "Valor liquidado: " + getLiquidado();
+  }
+
 
 }
+
+

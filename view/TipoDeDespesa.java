@@ -1,67 +1,52 @@
 package view;
 
-/**
- * Class TipoDeDespesa
- */
-public class TipoDeDespesa extends Fornecedor{
+import java.util.Scanner;
 
-  //
-  // Fields
-  //
+public class TipoDeDespesa {
 
   private int id;
   private String nome;
-  private Fornecedor fornecedor;
-  
-  //
-  // Constructors
-  //
-  public TipoDeDespesa () { };
-  
-  //
-  // Methods
-  //
 
+  Scanner teclado = new Scanner(System.in);
 
-  //
-  // Accessor methods
-  //
-
-  /**
-   * Set the value of id
-   * @param newVar the new value of id
-   */
-  public void setId (int newVar) {
-    id = newVar;
+  public TipoDeDespesa() {
   }
 
-  /**
-   * Get the value of id
-   * @return the value of id
-   */
-  public int getId () {
+  public TipoDeDespesa(int id, String nome) {
+    this.id = id;
+    this.nome = nome;
+
+  }
+
+  public int getId() {
     return id;
   }
 
-  /**
-   * Set the value of nome
-   * @param newVar the new value of nome
-   */
-  public void setNome (String newVar) {
-    nome = newVar;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  /**
-   * Get the value of nome
-   * @return the value of nome
-   */
-  public String getNome () {
+  public String getNome() {
     return nome;
   }
 
-  /**
-   * Set the value of fornecedor
-   * @param newVar the new value of fornecedor
-   */
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public void cadastrar()
+  {
+    System.out.println("Informe o ID do tipo de Despesa: ");
+    id = teclado.nextInt();
+    System.out.println("Nome do tipo de Despesa: ");
+    nome = teclado.nextLine();
+    teclado.nextLine();
+  }
+
+  @Override
+  public String toString() {
+    return "Tipo de Despesa: " + getNome();
+  }
 
 }
+
